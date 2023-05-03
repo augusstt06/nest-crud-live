@@ -42,15 +42,15 @@ export class UsersController {
   @Delete(':id')
   async delete(@Param(`id`) id: number): Promise<void> {
     // 유저가 없을때 에러 핸들링
-    // const user = await this.userService.findOne(id);
-    // if (!user) {
-    //   throw new Error('User not Found!');
-    // }
+    const user = await this.userService.findOne(id);
+    if (!user) {
+      throw new Error('User not Found!');
+    }
 
     // 위에서 만들어진 findOne에서 이미 에러핸들링을 하고 있기에 해당 메서드를 호출하여 자동으로 유저가 없을시 에러핸들링이 되게끔 한다.
-    const user = await this.findOne(id);
+    // const user = await this.findOne(id);
 
-    return this.userService.delete(user.id);
-    // return this.userService.delete(id)
+    // return this.userService.delete(user.id);
+    return this.userService.delete(id);
   }
 }
