@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { User } from './users/user.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DB,
-      entities: [__dirname + `/**/*.entity{.ts, .js}`],
+      entities: [__dirname + `/**/*.entity{.ts,.js}`, User],
       synchronize: true,
     }),
   ],
